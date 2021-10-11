@@ -1,0 +1,278 @@
+no 1
+using System;
+
+ 
+ public string FirstName { get; }
+ public string LastName { get; }
+ public string SocialSecurityNumber { get; }
+
+
+ public CommissionEmployee(string firstName, string lastName,
+ string socialSecurityNumber, decimal grossSales,
+ decimal commissionRate)
+ {
+ 
+ FirstName = firstName;
+ LastName = lastName;
+ SocialSecurityNumber = socialSecurityNumber;
+ GrossSales = grossSales; // validates gross sales
+ CommissionRate = commissionRate; // validates commission rate
+ }
+
+
+ public decimal GrossSales
+ {
+ get
+ {
+ return grossSales;
+ }
+ set
+ {
+ if (value < 0) // validation
+ {
+ throw new ArgumentOutOfRangeException(nameof(value),
+ value, $"{nameof(GrossSales)} must be >= 0");
+ }
+ 
+ grossSales = value;
+ }
+ }
+
+ public decimal CommissionRate
+ {
+ get
+49 {
+ return commissionRate;
+ }
+ set
+{
+ if (value <= 0 || value >= 1) // validation
+ {
+ throw new ArgumentOutOfRangeException(nameof(value),
+ value, $"{nameof(CommissionRate)} must be > 0 and < 1");
+ }
+
+ commissionRate = value;
+ }
+ }
+
+ public decimal Earnings() => * ;
+
+ public string ToString() =>
+ "commission employee: {FirstName} {LastName}\n" +
+ $"social security number: {SocialSecurityNumber}\n" +
+ $"gross sales: { :C}\n" +
+ $"commission rate: { :F2}";
+ }
+ 
+ hasil :
+ (13:20) Invalid token '=' in class, struct, or interface member declaration
+(13:27) Invalid token ';' in class, struct, or interface member declaration
+(15:1) Type or namespace definition, or end-of-file expected
+(16:1) Type or namespace definition, or end-of-file expected
+(18:33) ; expected
+(19:1) Type or namespace definition, or end-of-file expected
+(20:4) A namespace cannot directly contain members such as fields or methods
+(21:1) Type or namespace definition, or end-of-file expected
+(22:11) A namespace cannot directly contain members such as fields or methods
+(22:25) Type or namespace definition, or end-of-file expected
+
+using System;
+
+ public class CommissionEmployee
+ {
+ public string FirstName { get; }
+public string LastName { get; }
+ public string SocialSecurityNumber { get; }
+
+
+ public CommissionEmployee(string firstName, string lastName,
+ string socialSecurityNumber, decimal grossSales,
+ decimal commissionRate)
+ {
+ 
+ FirstName = firstName;
+ LastName = lastName;
+ SocialSecurityNumber = socialSecurityNumber;
+ GrossSales = grossSales; // validates gross sales
+ CommissionRate = commissionRate; // validates commission rate
+ }
+
+
+ public decimal GrossSales
+ {
+ get
+ {
+ return grossSales;
+ }
+3et
+ {
+ if (value < 0) // validation
+ {
+ throw new ArgumentOutOfRangeException(nameof(value),
+ value, $"{nameof(GrossSales)} must be >= 0");
+}
+
+ grossSales = value;
+ }
+}
+
+ public decimal CommissionRate
+ {
+ get
+ {
+ return commissionRate;
+ }
+ set
+ {
+ if (value <= 0 || value >= 1) // validation
+ {
+ throw new ArgumentOutOfRangeException(nameof(value),
+ value, $"{nameof(CommissionRate)} must be > 0 and < 1");
+ }
+
+ commissionRate = value;
+ }
+ }
+
+ public virtual decimal Earnings() => ;
+
+ public override string ToString() =>
+ $"commission employee: {FirstName} {LastName}\n" +
+ $"social security number: {SocialSecurityNumber}\n" +
+ $"gross sales: { :C}\n" +
+ $"commission rate: { :F2}";
+ }
+ 
+ hasil :
+ (21:25) ; expected
+(22:10) } expected
+
+using System;
+
+{
+ private decimal baseSalary; // base salary per week
+
+ public BasePlusCommissionEmployee(string firstName, string lastName,
+ string socialSecurityNumber, decimal grossSales,
+ decimal commissionRate, decimal baseSalary)
+ : base(firstName, lastName, socialSecurityNumber,
+ grossSales, commissionRate)
+ {
+ BaseSalary = baseSalary; // validates base salary
+ }
+
+ public decimal BaseSalary
+ {
+ get
+ {
+ return baseSalary;
+ }
+ set
+ {
+ if (value < 0) // validation
+ {
+
+throw new ArgumentOutOfRangeException(nameof(value),
+ value, $"{nameof(BaseSalary)} must be >= 0");
+ }
+
+ baseSalary = value;
+ }
+ }
+
+ public override decimal Earnings() => + ;
+
+ public override string ToString() =>
+ $"base-salaried { }\nbase salary: {
+}
+
+hasil :
+(43:2) Invalid token '=>' in class, struct, or interface member declaration
+(46:3) } expected
+
+
+ using System;
+
+ {
+ private decimal weeklySalary;
+
+ public SalariedEmployee(string firstName, string lastName,
+ string socialSecurityNumber, decimal weeklySalary)
+
+ {
+ WeeklySalary = weeklySalary; // validate salary
+ }
+
+ public decimal WeeklySalary
+ {
+ get
+ {
+ return weeklySalary;
+ }
+ set
+ {
+ if (value < 0) // validation
+ {
+ throw new ArgumentOutOfRangeException(nameof(value),
+ value, $"{nameof(WeeklySalary)} must be >= 0");
+ }
+
+weeklySalary = value;
+ }
+ }
+
+ => WeeklySalary;
+
+ =>
+ $"salaried employee: {base.ToString()}\n" +
+ $"weekly salary: {WeeklySalary:C}";
+ }
+ 
+ hasil : 
+ 
+ using System;
+
+ {
+ private decimal baseSalary; // base salary per week
+ public BasePlusCommissionEmployee(string firstName, string lastName,
+ string socialSecurityNumber, decimal grossSales,
+ decimal commissionRate, decimal baseSalary)
+
+ {
+ BaseSalary = baseSalary; // validates base salary
+ }
+ public decimal BaseSalary
+ {
+ get
+ {
+ return baseSalary;
+ }
+ set
+ {
+ if (value < 0) // validation
+ {
+ throw new ArgumentOutOfRangeException(nameof(value),
+ value, $"{nameof(BaseSalary)} must be >= 0");
+ }
+
+ baseSalary = value;
+ }
+ }
+ => BaseSalary + base.Earnings();
+ =>
+ $"base-salaried {base.ToString()}\nbase salary: {BaseSalary:C}";
+ }
+ 
+ hasil :
+ (12:6) } expected
+(14:2) A using clause must precede all other elements defined in the namespace except extern alias declarations
+(16:2) Type or namespace definition, or end-of-file expected
+(43:2) Type or namespace definition, or end-of-file expected
+ 
+ 
+ 
+ 
+ 
+ 
+ 
